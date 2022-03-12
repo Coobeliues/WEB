@@ -34,10 +34,6 @@
             margin-right: 0;
             margin-left: -40px;
 
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
         }
 
         ul li:hover {
@@ -132,6 +128,9 @@
             padding-left: 50px;
         }
 
+        img{
+            width: 20px;
+        }
     </style>
 </head>
 <body>
@@ -143,8 +142,11 @@
 <div class="header">
     <h3>ToDo List</h3>
     <input type="text" id="Input" placeholder="New Task">
-    <span onclick="newElement()" class="addBtn">Add</span>
+    <span onclick="newElement
+    ()" class="addBtn">Add</span>
 </div>
+
+
 
 <ul id="UL">
     <li class="checked">First item</li>
@@ -158,9 +160,18 @@
     var i;
     for (i = 0; i < myNodelist.length; i++) {
         var span = document.createElement("SPAN");
-        var txt = document.createTextNode("\u2212");
+        // var txt=document.getElementByClassName("photo");
+        var txt = document.querySelector("img");
+        // var txt = document.createTextNode("\u2212");
+
+        var ttt = document.createElement('img');
+        ttt.src='мусорное ведро.png';
+
+        // var txt=document.getElementById("#pict");
+        // txt.innerHTML="<img srcsrc='мусорное ведро.png'>";
+        // var pic =document.createElement("IMG");
         span.className = "close";
-        span.appendChild(txt);
+        span.appendChild(ttt);
         myNodelist[i].appendChild(span);
     }
 
@@ -168,10 +179,24 @@
     var i;
     for (i = 0; i < close.length; i++) {
         close[i].onclick = function() {
+            // console.log('parentNode', this.parentNode);
+            // console.log('element => this', this);
+            // this.parentNode.removeChild(this);
             var div = this.parentElement;
-            div.style.display = "none";
+            div.remove();
         }
     }
+
+    // var lil = document.querySelectorAll('#UL li')
+    // for (var j=0, len=lil.length; j<len; j++){
+    //     lil[j].onclick=function(){
+    //     var div =this.parentElement;
+    //     console.log('parentNode', this.parentNode);
+    //     console.log('element => this', this);
+    //     this.parentNode.removeChild(this);
+
+    //     }
+    // }
 
     var list = document.querySelector('ul');
     list.addEventListener('click', function(ev) {
@@ -193,15 +218,20 @@
         document.getElementById("Input").value = "";
 
         var span = document.createElement("SPAN");
-        var txt = document.createTextNode("\u2212");
+        //var txt = document.querySelector("img");
+        // var txt = document.createTextNode("\u2212");
+        var ttt = document.createElement('img');
+        ttt.src='мусорное ведро.png';
         span.className = "close";
-        span.appendChild(txt);
+        span.appendChild(ttt);
         li.appendChild(span);
 
         for (i = 0; i < close.length; i++) {
             close[i].onclick = function() {
+                // var div = this.parentElement;
+                // div.style.display = "none";
                 var div = this.parentElement;
-                div.style.display = "none";
+                div.remove();
             }
         }
     }
