@@ -12,11 +12,13 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+
     name = models.CharField(max_length=200)
     price = models.FloatField(default=0)
     description = models.TextField(default='')
     count = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
+    categorys = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products', null=True)
 
     def to_json(self):
         return {

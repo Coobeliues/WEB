@@ -29,3 +29,13 @@ def category_detail(request, category_id):
     except Category.DoesNotExist as exception:
         return JsonResponse({'exception': str(exception)}, status=400)
     return JsonResponse(category.to_json())
+
+
+def category_product_list(request, category_id):
+    try:
+        categories = Category.objects.get(id=category_id)
+    except Category.DoesNotExist as e:
+        return JsonResponse({'message': str(e)}, status = 400)
+    products = categories.products.all()
+    product_json = [product.to_json() for product in products]
+    return JsonResponse(product_json, safe=False)

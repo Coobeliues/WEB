@@ -19,8 +19,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-from django.contrib.auth.models import User
-user = User.objects.get( username='root')
-user.set_password('password')
-user.save()
